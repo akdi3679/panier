@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartItems = document.querySelectorAll('.card-body');
     const totalPriceElement = document.querySelector('.total');
     
-    // Function to update the total price
     const updateTotalPrice = () => {
       let total = 0;
       cartItems.forEach(item => {
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
       totalPriceElement.innerText = `${total.toFixed(2)} $`;
     };
   
-    // Function to increase quantity
     const increaseQuantity = (item) => {
       const quantityElement = item.querySelector('.quantity');
       let quantity = parseInt(quantityElement.innerText);
@@ -22,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
       updateTotalPrice();
     };
   
-    // Function to decrease quantity
     const decreaseQuantity = (item) => {
       const quantityElement = item.querySelector('.quantity');
       let quantity = parseInt(quantityElement.innerText);
@@ -33,34 +30,26 @@ document.addEventListener('DOMContentLoaded', () => {
       updateTotalPrice();
     };
   
-    // Function to delete an item
     const deleteItem = (item) => {
       item.remove();
       updateTotalPrice();
     };
   
-    // Function to like an item
     const toggleLike = (item) => {
       const heartIcon = item.querySelector('.fa-heart');
       heartIcon.classList.toggle('liked');
     };
   
-    // Adding event listeners to each product card
     cartItems.forEach(item => {
-      // Event listener for increase button
       item.querySelector('.fa-plus-circle').addEventListener('click', () => increaseQuantity(item));
   
-      // Event listener for decrease button
       item.querySelector('.fa-minus-circle').addEventListener('click', () => decreaseQuantity(item));
   
-      // Event listener for delete button
       item.querySelector('.fa-trash-alt').addEventListener('click', () => deleteItem(item));
   
-      // Event listener for heart (like) button
       item.querySelector('.fa-heart').addEventListener('click', () => toggleLike(item));
     });
   
-    // Initial update of the total price
     updateTotalPrice();
   });
   
